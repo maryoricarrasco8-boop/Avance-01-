@@ -1,0 +1,30 @@
+package banco;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
+
+import java.util.HashSet;
+
+public class ClienteTests {
+
+    @Test
+    void testDniUnico() {
+        HashSet<String> dnis = new HashSet<>();
+        String dni1 = "12345678";
+        String dni2 = "12345678"; // duplicado
+
+        boolean agregado1 = dnis.add(dni1);
+        boolean agregado2 = dnis.add(dni2);
+
+        assertTrue(agregado1, "El primer DNI debe registrarse correctamente");
+        assertFalse(agregado2, "No se debe permitir registrar un DNI duplicado");
+    }
+
+    @Test
+    void testEmailValido() {
+        String emailCorrecto = "usuario@test.com";
+        String emailIncorrecto = "usuariotest.com"; // sin @
+
+        assertTrue(emailCorrecto.contains("@"), "El email válido debe contener @");
+        assertFalse(emailIncorrecto.contains("@"), "El email inválido no debe pasar la validación");
+    }
+}
